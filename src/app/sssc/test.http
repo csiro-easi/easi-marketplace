@@ -1,0 +1,14 @@
+# Return all solutions
+GET https://sssc-vgl.geoanalytics.csiro.au/solutions/
+
+# Return a solution
+GET https://sssc-vgl.geoanalytics.csiro.au/solutions/4
+
+# Search
+GET https://sssc-vgl.geoanalytics.csiro.au/search?search=hello
+
+# local search
+GET http://localhost:5000/search?search=escript
+
+# local solution
+GET http://localhost:5000/problems

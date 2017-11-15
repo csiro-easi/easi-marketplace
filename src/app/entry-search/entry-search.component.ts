@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
 
 import { Observable }        from 'rxjs/Observable';
-import { BehaviorSubject }   from 'rxjs/BehaviorSubject';
+import { Subject }           from 'rxjs/Subject';
 import {
   catchError,
   debounceTime,
@@ -10,20 +11,22 @@ import {
 } from 'rxjs/operators';
 import { of as observableOf } from 'rxjs/observable/of';
 
-import { Entry }        from '../entry';
 import { EntryService } from '../entry.service';
+import { Entry } from '../entry';
 
 @Component({
-  selector: 'app-entries',
-  templateUrl: './entries.component.html',
-  styleUrls: ['./entries.component.css']
+  selector: 'app-entry-search',
+  templateUrl: './entry-search.component.html',
+  styleUrls: ['./entry-search.component.css']
 })
-export class EntriesComponent implements OnInit {
-  cols = 4;
+export class EntrySearchComponent implements OnInit {
   entries: Observable<Entry[]>;
-  private searchTerms = new BehaviorSubject<string>('');
+  private searchTerms = new Subject<string>();
 
-  constructor(private entryService: EntryService) {}
+  constructor(
+    private entryService: EntryService,
+    private router: Router
+  ) {}
 
   // Push a search term into the observable stream
   search(term: string): void {
@@ -36,16 +39,16 @@ export class EntriesComponent implements OnInit {
         debounceTime(300),      // wait 300ms after each keystroke before searching
         distinctUntilChanged(), // ignore if search term has not changed
         switchMap(
-          // switch to new observable each time term changes
-          (term: string) => term
+          (term: string) => term // switch to new observable each time term changes
           // return the http search observable
             ? this.entryService.search(term)
-          // or the observable of all entries if no search term
-            : this.entryService.getEntries()),
-      catchError(error => {
-        // TODO: add real error handling
-        console.log(error);
-        return observableOf<Entry[]>([]);
-      }));
+          // or the observable of empty entries if no search term
+            : observableOf<Entry[]>([])),
+        catchError(error => {
+          // TODO: add real error handling
+          console.log(error);
+          return observableOf<Entry[]>([]);
+        }));
   }
+
 }

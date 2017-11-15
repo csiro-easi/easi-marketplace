@@ -1,8 +1,11 @@
 <h2>Entries</h2>
 
 <div>
-  <ul>
-    <li *ngFor="let entry of entries">
-    </li>
-  </ul>
+  <input #searchBox (keyup)="search(searchBox.value)" />
 </div>
+
+<mat-grid-list cols="{{cols}}">
+  <mat-grid-tile *ngFor="let entry of entries | async">
+    <app-entry-listing [entry]="entry"></app-entry-listing>
+  </mat-grid-tile>
+</mat-grid-list>

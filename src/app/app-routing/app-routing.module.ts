@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EntriesComponent }     from './entries/entries.component';
-import { EntryDetailComponent } from './entry-detail/entry-detail.component';
+import { EntriesComponent }     from '../entries/entries.component';
+import { EntryDetailComponent } from '../entry-detail/entry-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/entries', pathMatch: 'full' },

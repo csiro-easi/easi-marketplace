@@ -1,3 +1,11 @@
-<p>
-  entry-detail works!
-</p>
+<div *ngIf="entry">
+  <h2>{{entry.name}}</h2>
+  <div>
+    <label>url: </label>{{entry.url}}
+  </div>
+  <div>
+    <label>description: </label>
+    {{entry.description}}
+  </div>
+  <button (click)="goBack()">Back</button>
+</div>
