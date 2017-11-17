@@ -20,6 +20,7 @@ export class EntryService {
   private providers: EntryProvider[] = [];
 
   private cache: Entry[] = [];
+  private urlIdMap: Object = {};
 
   constructor(
     @Inject(PROVIDER_CONFIG) private providerConfigs: ProviderConfig[],
@@ -32,40 +33,31 @@ export class EntryService {
 
   getEntries(): Observable<Entry[]> {
     return this.providers[0].getEntries().pipe(
-      map((entries) => {
-        this.cache = [];
-        entries.forEach((entry, i) => {
-          entry.id = i;
-          this.cache[i] = entry;
-        });
-        return entries;
-      })
+      map((entries) => entries.map(this.cacheEntry))
     );
   }
 
   getEntry(id: number): Observable<Entry> {
     // Call back to the provider to make sure we have up to date info.
     const entry_id = this.cache[id].url;
-    return this.providers[0].getEntry(entry_id).pipe(
-      map(entry => {
-        entry.id = id;
-        this.cache[id] = entry;
-        return entry;
-      })
-    );
+    return this.providers[0].getEntry(entry_id).pipe(map(this.cacheEntry));
   }
 
   search(term: string): Observable<Entry[]> {
     return this.providers[0].search(term).pipe(
-      map((entries) => {
-        this.cache = [];
-        entries.forEach((entry, i) => {
-          entry.id = i;
-          this.cache[i] = entry;
-        });
-        return entries;
-      })
+      map((entries) => entries.map(this.cacheEntry))
     );
+  }
+
+  private cacheEntry(entry: Entry) {
+    let id = this.urlIdMap[entry.url];
+    if (id === undefined) {
+      id = this.cache.push(entry) - 1;
+    } else {
+      this.cache[id] = entry;
+    }
+    entry.id = id;
+    return entry;
   }
 
   private handleError(error: any): Observable<any> {
