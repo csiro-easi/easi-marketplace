@@ -1,0 +1,17 @@
+<h2>Query controls</h2>
+
+<div>
+  <h3>Search entries</h3>
+  <input #searchBox (keyup)="search(searchBox.value)" />
+</div>
+
+<div>
+  <h3>Categories</h3>
+  <p *ngFor="let cs of categorySelection">
+    <mat-checkbox
+      [(ngModel)]="cs[1]"
+      (change)="emitUpdate()">
+      {{cs[0]}}
+    </mat-checkbox>
+  </p>
+</div>

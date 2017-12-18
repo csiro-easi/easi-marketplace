@@ -1,0 +1,37 @@
+<h2>Details for: {{entry.name}}</h2>
+<h3><a href="{{entry.id}}">{{entry.id}}</a></h3>
+
+<section>
+  <p><label>Creation date:</label> {{entry.createdAt | date:dateFormat}}</p>
+  <p><label>Author:</label> <a href="{{entry.author['@id']}}">{{entry.author.name}}</a></p>
+</section>
+
+<div *ngIf="entry.icon">
+    <img src="{{entry.icon}}">
+</div>
+
+<section>
+  <h3>Description</h3>
+  {{entry.description}}
+</section>
+
+<section>
+  <h3>Properties</h3>
+  <table class="entry-properties">
+  <tr *ngFor="let p of getProperties(entry)">
+    <td><b>{{p|titlecase}}</b></td>
+    <td [ngSwitch]="propertyType(entry[p])">
+      <span *ngSwitchCase="'string'" [innerHTML]="entry[p] | linky"></span>
+      <span *ngSwitchCase="'number'">{{entry[p]}}</span>
+      <app-entry-dependency *ngSwitchCase="'dependencies'" [dependencies]="entry[p]"></app-entry-dependency>
+      <app-entry-variable *ngSwitchCase="'variables'" [variables]="entry[p]"></app-entry-variable>
+      <ul *ngSwitchCase="'array'">
+        <li *ngFor="let x of entry[p]" [innerHTML]="x | linky"></li>
+      </ul>
+      <span *ngSwitchDefault [innerHTML]="entry[p] | json | linky"></span>
+    </td>
+  </tr>
+  </table>
+</section>
+
+<p><button (click)="goBack()">Back</button></p>

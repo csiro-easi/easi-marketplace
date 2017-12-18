@@ -1,0 +1,11 @@
+.entry-properties {
+  border-collapse: collapse;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.entry-properties tr, td {
+  border-style: solid;
+  border-width: 1px;
+  padding: 3px;
+}

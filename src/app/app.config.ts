@@ -1,12 +1,16 @@
 import { InjectionToken } from '@angular/core';
 
-import { ProviderConfig } from './entry-providers';
-
+export class ProviderConfig {
+  name: string;
+  endpoint: string;
+  type: string;
+}
 
 export const AVRE_PROVIDER_CONFIG: ProviderConfig[] = [
   {
     name: 'VGL SSSC',
-    endpoint: 'https://sssc-vgl.geoanalytics.csiro.au',
+    endpoint: 'http://localhost:5000',
+    // endpoint: 'https://sssc-vgl.geoanalytics.csiro.au',
     type: 'sssc'
   }
 ];

@@ -26,9 +26,9 @@
     minimist "^1.2.0"
     rxjs "^5.5.2"
 
-"@angular/animations@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.0.0.tgz#b5ad199c67f93f759544477effe6679e154991fb"
+"@angular/animations@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.1.0.tgz#439135ed56355ec779791bf3ea7de1c711cd2185"
   dependencies:
     tslib "^1.7.1"
 
@@ -190,6 +190,10 @@
   dependencies:
     "@angular-devkit/core" "0.0.20"
 
+"@types/autolinker@^0.24.28":
+  version "0.24.28"
+  resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
+
 "@types/jasmine@*":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.6.2.tgz#6e6d4cb183cd55c7a1ad6270bced10fdd5367a3c"
@@ -306,6 +310,13 @@ amdefine@>=0.0.4:
 angular-in-memory-web-api@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/angular-in-memory-web-api/-/angular-in-memory-web-api-0.5.1.tgz#e2a2073fe11bc08bad712774275e2728263e5ceb"
+
+angular-linky@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/angular-linky/-/angular-linky-1.2.2.tgz#275426df49e39b759d8ccdf01c178e69cb67d868"
+  dependencies:
+    "@types/autolinker" "^0.24.28"
+    autolinker "^1.1.0"
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -473,6 +484,10 @@ async@~0.2.6:
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
+
+autolinker@^1.1.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/autolinker/-/autolinker-1.6.0.tgz#bad376b7ad8e415f22f102fc0f37f640e64f1cbf"
 
 autoprefixer@^6.3.1, autoprefixer@^6.5.3:
   version "6.7.7"

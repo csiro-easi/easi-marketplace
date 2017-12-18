@@ -1,0 +1,14 @@
+<h2>Results</h2>
+
+<!-- <mat-grid-list cols="{{cols}}" rowHeight="{{rowHeight}}">
+     <mat-grid-tile *ngFor="let entry of entries | async">
+     <app-entry-listing [entry]="entry"></app-entry-listing>
+     </mat-grid-tile>
+     </mat-grid-list>
+-->
+<!-- <div style="display:grid; grid-template-columns:repeat(3, 1fr); grid-column-gap:10px; grid-row-gap:10px">
+     <app-entry-listing *ngFor="let entry of entries | async" [entry]="entry"></app-entry-listing>
+     </div> -->
+<div style="display:flex; flex-wrap:wrap">
+  <app-entry-listing *ngFor="let entry of entries | async" [entry]="entry"></app-entry-listing>
+</div>
