@@ -6,7 +6,7 @@
   <p><label>Author:</label> <a href="{{entry.author['@id']}}">{{entry.author.name}}</a></p>
 </section>
 
-<div *ngIf="entry.icon">
+<div *ngIf="entry?.icon">
     <img src="{{entry.icon}}">
 </div>
 
@@ -25,6 +25,11 @@
       <span *ngSwitchCase="'number'">{{entry[p]}}</span>
       <app-entry-dependency *ngSwitchCase="'dependencies'" [dependencies]="entry[p]"></app-entry-dependency>
       <app-entry-variable *ngSwitchCase="'variables'" [variables]="entry[p]"></app-entry-variable>
+      <ul *ngSwitchCase="'solutions'">
+        <li *ngFor="let x of entry[p]">
+          <a href="{{x?.solution['@id']}}">{{x?.solution?.name}}</a>
+        </li>
+      </ul>
       <ul *ngSwitchCase="'array'">
         <li *ngFor="let x of entry[p]" [innerHTML]="x | linky"></li>
       </ul>

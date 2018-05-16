@@ -18,7 +18,8 @@ const properties = [
   'createdAt',
   'created_at',
   'icon',
-  'published'
+  'published',
+  'versions'
 ];
 
 
@@ -74,10 +75,17 @@ export class EntryDetailComponent implements OnInit {
         // Test type of contents
         if (p[0]) {
           const ptype = p[0]['@type'];
-          if (ptype === 'SolutionVar') {
-            return 'variables';
-          } else if (ptype === 'SolutionDependency') {
-            return 'dependencies';
+          switch (ptype) {
+            case 'SolutionVar':
+            case 'ToolboxVar':
+              return 'variables';
+            case 'SolutionDependency':
+            case 'ToolboxDependency':
+              return 'dependencies';
+            case 'ApplicationSolution':
+              return 'solutions';
+            default:
+              // fall out of the if (p[0]) test
           }
         }
         return 'array';
