@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { EntryType, ENTRY_TYPES } from '../entry';
+import { EntryType, ENTRY_TYPES, Entry } from '../entry';
 import { SearchConstraints } from '../entry-providers';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-query',
@@ -11,11 +13,11 @@ import { SearchConstraints } from '../entry-providers';
 export class QueryComponent implements OnInit {
   @Output() onUpdate = new EventEmitter<SearchConstraints>();
 
-  private categorySelection: [EntryType, boolean][] = ENTRY_TYPES.map<[EntryType, boolean]>(x => [x, true]);
-
   private searchTerm  = '';
 
-  constructor() {
+  public solutionSelection: [Entry, boolean][]=[];
+
+  constructor(private storeService: StoreService) {
   }
 
   search(term: string): void {
@@ -27,24 +29,31 @@ export class QueryComponent implements OnInit {
     this.emitUpdate();
   }
 
-  getSelectedCategories(): EntryType[] {
-    return this.categorySelection.filter(kv => kv[1]).map(kv => kv[0]);
-  }
-
   getSearchTerm(): string {
     const term = this.searchTerm.trim();
     return term.length > 0 ? term : null;
   }
 
   emitUpdate(): void {
-    const constraints = {
-      categories: this.getSelectedCategories(),
+    const constraints: SearchConstraints  = {
+      categories: ['Application', 'Solution'],
       term: this.getSearchTerm()
     };
     this.onUpdate.emit(constraints);
   }
 
   ngOnInit() {
+    // const constraints: SearchConstraints = {
+    //   categories: ['Solution'],
+    //   term: ''
+    // };
+    this.storeService.getEntries().subscribe((entries: Entry[]) => {
+      for (let s of entries) {
+        if (s.entryType == 'Solution') {
+          this.solutionSelection.push([s, false])
+        }
+      }
+    })
     this.emitUpdate();
   }
 }

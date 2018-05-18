@@ -1,4 +1,4 @@
-<h2>Results</h2>
+<h2>Available Apps</h2>
 
 <!-- <mat-grid-list cols="{{cols}}" rowHeight="{{rowHeight}}">
      <mat-grid-tile *ngFor="let entry of entries | async">
@@ -10,5 +10,7 @@
      <app-entry-listing *ngFor="let entry of entries | async" [entry]="entry"></app-entry-listing>
      </div> -->
 <div style="display:flex; flex-wrap:wrap">
-  <app-entry-listing *ngFor="let entry of entries | async" [entry]="entry"></app-entry-listing>
+  <ng-container *ngFor="let entry of entries | async">
+    <app-entry-listing *ngIf="entry.entryType == 'Application'" [entry]="entry"></app-entry-listing>
+  </ng-container>
 </div>
