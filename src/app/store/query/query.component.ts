@@ -29,6 +29,10 @@ export class QueryComponent implements OnInit {
     this.emitUpdate();
   }
 
+  getSelectedSolutions(): Entry[] {
+    return this.solutionSelection.filter(kv => kv[1]).map(kv => kv[0]);
+  }
+
   getSearchTerm(): string {
     const term = this.searchTerm.trim();
     return term.length > 0 ? term : null;
@@ -37,6 +41,7 @@ export class QueryComponent implements OnInit {
   emitUpdate(): void {
     const constraints: SearchConstraints  = {
       categories: ['Application', 'Solution'],
+      solutionFilter: this.getSelectedSolutions(),
       term: this.getSearchTerm()
     };
     this.onUpdate.emit(constraints);
@@ -48,9 +53,11 @@ export class QueryComponent implements OnInit {
     //   term: ''
     // };
     this.storeService.getEntries().subscribe((entries: Entry[]) => {
-      for (let s of entries) {
-        if (s.entryType == 'Solution') {
-          this.solutionSelection.push([s, false])
+      if(this.solutionSelection.length ==0) {
+        for (let s of entries) {
+          if (s.entryType == 'Solution') {
+            this.solutionSelection.push([s, false])
+          }
         }
       }
     })
