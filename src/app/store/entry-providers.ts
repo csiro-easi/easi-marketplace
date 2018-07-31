@@ -3,6 +3,7 @@ import { Entry, Problem, Toolbox, Solution, Application, EntryType } from './ent
 
 export interface SearchConstraints {
   categories?: EntryType[];
+  solutionFilter?: Entry[];
   term?: string;
 }
 

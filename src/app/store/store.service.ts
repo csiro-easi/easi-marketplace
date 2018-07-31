@@ -114,8 +114,20 @@ export class StoreService {
       const categories = (constraints.categories || []).map(c => entryTypesMap[c]);
       const includes = [...categories, 'error'];
       const copy = new SearchResponse();
+      const selectedSolutionIds = constraints.solutionFilter.map( sol => sol['@id'])
       for (const p of includes) {
-        copy[p] = resp[p];
+        if( (p == 'applications' && selectedSolutionIds.length > 0)) {
+          var apps =  resp[p]
+          if(apps) {
+            copy[p] = apps.filter( app => {
+              const appSolutions = app['solutions'].map( sol => sol['solution']['@id']);
+              return appSolutions.filter(appSol => selectedSolutionIds.includes(appSol)).length > 0
+            });
+              
+          }
+        } else {
+          copy[p] = resp[p];
+        }
       }
       return copy;
     };

@@ -9,7 +9,7 @@ export class ProviderConfig {
 export const AVRE_PROVIDER_CONFIG: ProviderConfig[] = [
   {
     name: 'VGL SSSC',
-    endpoint: 'http://localhost:5000',
+    endpoint: 'http://sssc-avre.geoanalytics.csiro.au',
     // endpoint: 'https://sssc-vgl.geoanalytics.csiro.au',
     type: 'sssc'
   }

@@ -13,6 +13,10 @@
   </mat-card-content>
   <mat-card-actions>
     <a mat-button
+      href="{{entry.url_template}}" target="_blank">
+      LAUNCH
+    </a>
+    <a mat-button
       [routerLink]="['detail/', entry.id]">
       DETAILS
     </a>

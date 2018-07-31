@@ -8,6 +8,7 @@ export class Entry {
   name: string;
   description: string;
   url: string;
+  url_template: string;
   icon?: string;
 }
 

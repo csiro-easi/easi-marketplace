@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import {
   MatButtonModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatBottomSheetModule,
+  MatListModule
 } from '@angular/material';
 
-import { NavbarComponent } from './navbar.component';
+import { NavbarComponent, AboutBottomSheet } from './navbar.component';
 
 @NgModule({
   imports: [
@@ -16,9 +18,12 @@ import { NavbarComponent } from './navbar.component';
     MatIconModule,
     MatToolbarModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatBottomSheetModule,
+    MatListModule
   ],
-  exports: [NavbarComponent],
-  declarations: [NavbarComponent]
+  entryComponents: [AboutBottomSheet],
+  exports: [NavbarComponent, AboutBottomSheet],
+  declarations: [NavbarComponent, AboutBottomSheet]
 })
 export class NavbarModule {}

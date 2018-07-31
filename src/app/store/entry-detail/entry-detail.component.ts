@@ -35,9 +35,9 @@ export class EntryDetailComponent implements OnInit {
   @HostBinding('style.position') position = 'absolute';
 
   private entry$: Observable<Entry>;
-  private entry: Entry;
 
-  private dateFormat = 'long';
+  entry: Entry;
+  dateFormat = 'long';
 
   constructor(
     private storeService: StoreService,
@@ -58,7 +58,7 @@ export class EntryDetailComponent implements OnInit {
     this.router.navigate(['../../'], { relativeTo: this.route });
   }
 
-  private getProperties(entry) {
+  getProperties(entry) {
     return Object.keys(entry).filter(k => {
       return (!properties.includes(k) &&
               !k.startsWith('@') &&

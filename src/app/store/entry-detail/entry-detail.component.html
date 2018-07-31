@@ -3,7 +3,7 @@
 
 <section>
   <p><label>Creation date:</label> {{entry.createdAt | date:dateFormat}}</p>
-  <p><label>Author:</label> <a href="{{entry.author['@id']}}">{{entry.author.name}}</a></p>
+  <!-- <p><label>Author:</label> <a href="{{entry.author['@id']}}">{{entry.author.name}}</a></p> -->
 </section>
 
 <div *ngIf="entry?.icon">

@@ -14,3 +14,19 @@ dt {
 dd {
   margin-bottom: 1.5rem;
 }
+
+body { 
+  font-family: Arial, Helvetica, sans-serif;   
+}
+
+.mat-card {
+  font-family: Arial, Helvetica, sans-serif;   
+}
+
+.mat-checkbox {
+  font-family: Arial, Helvetica, sans-serif;   
+}
+
+.mat-button {
+  font-family: Arial, Helvetica, sans-serif;   
+}
