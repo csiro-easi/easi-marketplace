@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  avre:
+    image: avre:dev
+    ports:
+      - 8080:80
+  sssc:
+    image: sssc-web:latest
+    ports:
+      - 5000:5000
+    volumes:
+      - ${SSSC_DATA_DIR:-scm-data-dev}:/var/lib/scm
+    environment:
+      - DEBUG=true
+      - SSSC_CONFIG=${SSSC_CONFIG-/app/sssc/scm.config}
+      - FLASK_DEBUG=1
+    entrypoint: flask_dev_entrypoint
+    command: run --with-threads --host 0.0.0.0
+
+volumes: 
+    scm-data-dev:

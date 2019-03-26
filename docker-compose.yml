@@ -2,4 +2,6 @@ version: '3.4'
 
 services:
   avre:
-    image: avre:latest
+    image: avre:dev
+    ports:
+      - "8080:80"
