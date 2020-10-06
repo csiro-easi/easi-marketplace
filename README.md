@@ -1,3 +1,8 @@
+> This repository is no longer maintained here.
+> Further development will likely occur in https://dev.azure.com/csiro-easi/easi-hub.
+
+----
+
 # Avre
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
